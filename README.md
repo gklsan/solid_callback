@@ -1,7 +1,7 @@
 # SolidCallback
 
 [![Gem Version](https://badge.fury.io/rb/solid_callback.svg)](https://badge.fury.io/rb/solid_callback)
-[![Build Status](https://github.com/gklsan/solid_callback/workflows/tests/badge.svg)](https://github.com/gklsan/solid_callback/actions)
+[![Ruby](https://github.com/gklsan/solid_callback/actions/workflows/ruby.yml/badge.svg)](https://github.com/gklsan/solid_callback/actions/workflows/ruby.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 SolidCallback adds powerful method interception capabilities to your Ruby classes with near-zero overhead. Clean, flexible, and unobtrusive.
