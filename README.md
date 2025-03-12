@@ -1,6 +1,6 @@
 # SolidCallback
 
-[![Gem Version](https://badge.fury.io/rb/solid_callback.svg)](https://badge.fury.io/rb/solid_callback)
+[![Gem Version](https://badge.fury.io/rb/solid_callback.svg?icon=si%3Arubygems)](https://badge.fury.io/rb/solid_callback)
 [![Ruby](https://github.com/gklsan/solid_callback/actions/workflows/ruby.yml/badge.svg)](https://github.com/gklsan/solid_callback/actions/workflows/ruby.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
