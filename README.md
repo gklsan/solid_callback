@@ -20,19 +20,19 @@ SolidCallback adds powerful method interception capabilities to your Ruby classe
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'solid_callback'
+  gem 'solid_callback'
 ```
 
 And then execute:
 
 ```bash
-$ bundle install
+  bundle install
 ```
 
 Or install it yourself:
 
 ```bash
-$ gem install solid_callback
+  gem install solid_callback
 ```
 
 ## Usage
@@ -190,7 +190,7 @@ Callbacker uses Ruby's metaprogramming to wrap your methods with callback functi
 
 ## 🤝 Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/gklsan/solid_callback.
+Bug reports and pull requests are welcome on GitHub at https://github.com/gklsan/solid_callback/issues.
 
 ## 📄 License
 
