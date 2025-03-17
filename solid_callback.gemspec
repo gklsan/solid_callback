@@ -14,10 +14,9 @@ Gem::Specification.new do |spec|
   spec.description = "SolidCallback adds powerful method interception capabilities to your Ruby classes with near-zero overhead. Clean, flexible, and unobtrusive."
   spec.homepage = "https://github.com/gklsan/solid_callback"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.3.0"
 
   spec.metadata = {
-    'homepage_uri' => spec.homepage,
     'source_code_uri' => "https://github.com/gklsan/solid_callback",
     'changelog_uri' => "https://github.com/gklsan/solid_callback/releases",
     'bug_tracker_uri' => "https://github.com/gklsan/solid_callback/issues",
