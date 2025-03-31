@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    solid_callback (1.0.1)
+    solid_callback (2.0.2)
 
 GEM
   remote: https://rubygems.org/
