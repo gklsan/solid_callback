@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.description = "SolidCallback adds powerful method interception capabilities to your Ruby classes with near-zero overhead. Clean, flexible, and unobtrusive."
   spec.homepage = "https://github.com/gklsan/solid_callback"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.3.0"
+  spec.required_ruby_version = ">= 4.0.1"
 
   spec.metadata = {
     'source_code_uri' => "https://github.com/gklsan/solid_callback",
@@ -37,7 +37,7 @@ Gem::Specification.new do |spec|
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
 
-  spec.add_development_dependency "bundler", "~> 2.0"
+  spec.add_development_dependency "bundler", ">= 2.0"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rspec", "~> 3.0"
   spec.add_development_dependency "yard", "~> 0.9"
