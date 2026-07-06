@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/solid_callback.svg?icon=si%3Arubygems)](https://badge.fury.io/rb/solid_callback)
 [![Test](https://github.com/gklsan/solid_callback/actions/workflows/ruby.yml/badge.svg)](https://github.com/gklsan/solid_callback/actions/workflows/ruby.yml)
-[![Downloads](https://img.shields.io/gem/dt/simple_http_service.svg)](https://badge.fury.io/rb/simple_http_service)
+[![Downloads](https://img.shields.io/gem/dt/solid_callback.svg)](https://badge.fury.io/rb/solid_callback)
 [![Github forks](https://img.shields.io/github/forks/gklsan/solid_callback.svg)](https://github.com/gklsan/solid_callback/network)
 [![Github stars](https://img.shields.io/github/stars/gklsan/solid_callback.svg)](https://github.com/gklsan/solid_callback/stargazers)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -17,6 +17,10 @@ SolidCallback adds powerful method interception capabilities to your Ruby classe
 - ⚡ **Performance-focused**: Minimal overhead through efficient method wrapping
 - 🔒 **Thread-safe**: Safely use in concurrent applications
 - 📝 **Conditional execution**: Run callbacks only when specific conditions are met
+
+## Requirements
+
+- Ruby >= 3.3.0
 
 ## Installation
 
@@ -138,15 +142,13 @@ before_call :notify_admin, if: -> { Rails.env.production? }
 
 ### Skipping Callbacks
 
-Skip callbacks for specific methods:
+Use `except:` to exclude specific methods from a callback:
 
 ```ruby
 class ApiService
   include SolidCallback
   
-  before_call :rate_limit
-  
-  skip_callbacks_for :health_check
+  before_call :rate_limit, except: [:health_check]
   
   def get_data
     # Implementation...
@@ -158,6 +160,10 @@ class ApiService
   end
 end
 ```
+
+> **Note:** `skip_callbacks_for` is also available on the class, but it currently only
+> records the given method names — it does not yet suppress callback execution. Prefer
+> `except:` (as above) until that's wired up.
 
 ## Callback Options
 
@@ -172,12 +178,24 @@ Each callback method accepts the following options:
 
 ## How It Works
 
-Callbacker uses Ruby's metaprogramming to wrap your methods with callback functionality:
+SolidCallback uses Ruby's metaprogramming to wrap your methods with callback functionality:
 
-1. When included, it extends your class with callback registration methods
-2. When a callback is registered, it stores the configuration
-3. When a method is defined, it wraps the method with callback handling code
-4. When the method is called, it executes the callbacks in the proper order
+1. `include SolidCallback` extends your class with the callback registration API and
+   hooks into `method_added` so newly defined methods can be wrapped automatically.
+2. `before_call`, `after_call`, and `around_call` just store the callback configuration
+   (method name, `only`/`except`/`if`/`unless`) on the class — they don't need to run
+   before the target method is defined.
+3. Each time a **public** instance method is defined, it's aliased to
+   `_solid_callback_original_<method>` and replaced with a wrapper that runs the
+   applicable `before` callbacks, then the `around` chain (which ultimately calls the
+   original method), then the applicable `after` callbacks. Private/protected methods
+   are left untouched.
+4. Applicability (`only`, `except`, `if`, `unless`) is evaluated per call, against the
+   actual instance, so the same callback can behave differently per invocation.
+5. `around_call` callbacks are nested in registration order (the first one registered is
+   outermost) and must `yield` to continue the chain, much like Rack middleware.
+6. If a method needs wrapping outside the normal `method_added` flow, call
+   `wrap_methods(:method_name, ...)` explicitly.
 
 ## 📚 Use Cases
 
